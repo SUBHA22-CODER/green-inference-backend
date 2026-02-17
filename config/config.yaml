@@ -1,0 +1,84 @@
+# Green-Inference Configuration
+# Power-aware AI model profiles
+
+# Power Thresholds (Battery Percentage)
+POWER_THRESHOLDS:
+  HIGH_POWER: 50  # > 50% battery
+  MEDIUM_POWER: 20  # 20-50% battery
+  LOW_POWER: 20  # < 20% battery
+  CRITICAL_POWER: 10  # < 10% battery - emergency mode
+
+# Monitoring Settings
+MONITORING:
+  CHECK_INTERVAL: 30  # seconds between power checks
+  LOG_LEVEL: "INFO"
+  ENABLE_GPU_MONITORING: true
+  ENABLE_NPU_MONITORING: true
+
+# Model Profiles (Quality vs Power Trade-off)
+MODEL_PROFILES:
+  HIGH_QUALITY:
+    name: "High Quality (8-bit)"
+    model_id: "TheBloke/Llama-2-7B-Chat-GGUF"
+    model_file: "llama-2-7b-chat.Q8_0.gguf"
+    quantization: "Q8_0"
+    max_tokens: 512
+    temperature: 0.7
+    power_consumption: "HIGH"
+    battery_threshold: 50
+    
+  MEDIUM_QUALITY:
+    name: "Medium Quality (4-bit)"
+    model_id: "TheBloke/Llama-2-7B-Chat-GGUF"
+    model_file: "llama-2-7b-chat.Q4_K_M.gguf"
+    quantization: "Q4_K_M"
+    max_tokens: 256
+    temperature: 0.7
+    power_consumption: "MEDIUM"
+    battery_threshold: 20
+    
+  LOW_QUALITY:
+    name: "Low Power (Tiny Model)"
+    model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+    model_file: "TinyLlama-1.1B-Chat-v1.0-Q4_K_M.gguf"
+    quantization: "Q4_K_M"
+    max_tokens: 128
+    temperature: 0.8
+    power_consumption: "LOW"
+    battery_threshold: 0
+
+# Hardware Acceleration Preferences (AMD-optimized)
+HARDWARE:
+  PREFER_NPU: true  # Prioritize AMD Ryzen AI NPU
+  PREFER_GPU: true  # Fallback to GPU (ROCm/DirectML)
+  PREFER_CPU: true  # Last resort
+  
+  # AMD-specific optimizations
+  AMD_DIRECTML: true
+  AMD_ROCM: false  # Enable if ROCm is available
+  
+  # Intel fallback (for development)
+  INTEL_OPENVINO: false
+
+# API Settings
+API:
+  HOST: "127.0.0.1"
+  PORT: 8000
+  WORKERS: 1
+  RELOAD: false
+
+# UI Settings
+UI:
+  THEME: "dark-blue"
+  WINDOW_SIZE: "800x600"
+  UPDATE_INTERVAL: 5000  # ms
+  SHOW_ENERGY_SAVINGS: true
+  SHOW_REAL_TIME_GRAPHS: true
+
+# Energy Tracking
+ENERGY:
+  BASELINE_POWER_CPU: 15  # watts
+  BASELINE_POWER_GPU: 30  # watts
+  BASELINE_POWER_NPU: 5   # watts (AMD Ryzen AI)
+  TRACK_CARBON_OFFSET: true
+  CARBON_INTENSITY: 0.5   # kg CO2 per kWh (average)
