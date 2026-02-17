@@ -1,36 +1,20 @@
-# Green-Inference: AI-Power Orchestrator
-# Dependencies for power-aware AI model management
-
-# Core System Monitoring
 psutil==5.9.8
 GPUtil==1.4.0
 
-# AI/ML Framework
-onnxruntime==1.24.1
-onnxruntime-directml==1.17.1  # For AMD DirectML support
+onnxruntime
 transformers==4.38.2
-torch==2.2.1
 optimum==1.17.1
 
-# Model Management
 huggingface-hub==0.21.4
 sentencepiece==0.2.0
 
-# API Framework
 fastapi==0.109.2
 uvicorn[standard]==0.27.1
 pydantic==2.6.3
 
-# UI Framework
-customtkinter==5.2.2
-pillow==10.2.0
-matplotlib==3.8.3
-
-# Utilities
 python-dotenv==1.0.1
 pyyaml==6.0.1
 colorama==0.4.6
 tabulate==0.9.0
 
-# Logging & Monitoring
 loguru==0.7.2
