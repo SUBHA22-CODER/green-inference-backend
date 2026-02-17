@@ -6,7 +6,7 @@ psutil==5.9.8
 GPUtil==1.4.0
 
 # AI/ML Framework
-onnxruntime==1.17.1
+onnxruntime==1.24.1
 onnxruntime-directml==1.17.1  # For AMD DirectML support
 transformers==4.38.2
 torch==2.2.1
